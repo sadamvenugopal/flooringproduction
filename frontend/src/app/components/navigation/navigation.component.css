@@ -1,185 +1,321 @@
-/* Modern CSS Navigation - No Bootstrap */
+/* Navigation Styles */
 .main-nav {
-    position: fixed;
-    top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2c3e50;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-brand:hover {
+  opacity: 0.8;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.toggle-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.toggle-icon::before {
+  top: -8px;
+}
+
+.toggle-icon::after {
+  bottom: -8px;
+}
+
+.nav-menu {
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #2980b9;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link.router-link-active {
+  color: white;
+  font-weight: 600;
+}
+
+.nav-link.router-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #3498db;
+  border-radius: 2px;
+}
+
+.mockup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.mockup-form {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 320px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #222;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+input,
+textarea {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  background-color: #f9f9f9;
+}
+
+textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.form-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+}
+
+.submit-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem; /* Added horizontal padding */
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: auto; /* Remove full width */
+}
+
+.close-button {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #1b0505;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(245, 8, 8, 0.505);
+  transform: scale(1.1);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
     left: 0;
     width: 100%;
-    background-color: #2c3e50;
-    color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: #34495e;
+    flex-direction: column;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .nav-menu.show {
+    max-height: 500px;
+    padding: 1rem 0;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-item {
+    padding: 0.5rem 0;
+    justify-content: center;
+  }
+
+  .nav-toggle.active .toggle-icon {
+    background-color: transparent;
+  }
+
+  .nav-toggle.active .toggle-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .nav-toggle.active .toggle-icon::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+  }
+
+  .mockup-form {
+    padding: 1rem;
+    min-height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
   }
   
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+  .mockup-form h2 {
+    font-size: 26px;
+  }
+  
+  .submit-button {
     padding: 1rem 2rem;
   }
-  
-  .nav-brand {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-  }
-  
-  .nav-brand:hover {
-    opacity: 0.8;
-  }
-  
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  .toggle-icon {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: white;
-    position: relative;
-    transition: all 0.3s ease;
-  }
-  
-  .toggle-icon::before,
-  .toggle-icon::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    background-color: white;
-    transition: all 0.3s ease;
-  }
-  
-  .toggle-icon::before {
-    top: -8px;
-  }
-  
-  .toggle-icon::after {
-    bottom: -8px;
-  }
-  
-  .nav-menu {
-    display: flex;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-list {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-link {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: white;
-  }
-  
-  .nav-link.router-link-active {
-    color: white;
-    font-weight: 600;
-  }
-  
-  .nav-link.router-link-active::after {
+
+}
+
+/* Desktop Hover Effects */
+@media (min-width: 769px) {
+  .nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 2px;
     background-color: #3498db;
-    border-radius: 2px;
+    transition: width 0.3s ease;
   }
-  
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .nav-toggle {
-      display: block;
-    }
-  
-    .nav-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #34495e;
-      flex-direction: column;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      max-height: 0;
-      overflow: hidden;
-      align-items: center;
-    }
-  
-    .nav-menu.show {
-      max-height: 500px;
-    }
-  
-    .nav-list {
-      flex-direction: column;
-      gap: 1rem;
-    }
-  
-    .nav-item {
-      padding: 0.5rem 0;
-    }
-  
-    .nav-toggle.active .toggle-icon {
-      background-color: transparent;
-    }
-  
-    .nav-toggle.active .toggle-icon::before {
-      transform: rotate(45deg);
-      top: 0;
-    }
-  
-    .nav-toggle.active .toggle-icon::after {
-      transform: rotate(-45deg);
-      bottom: 0;
-    }
+
+  .nav-link:hover::after {
+    width: 100%;
   }
-  
-  /* Desktop Hover Effects */
-  @media (min-width: 769px) {
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: #3498db;
-      transition: width 0.3s ease;
-    }
-  
-    .nav-link:hover::after {
-      width: 100%;
-    }
-  
-    .nav-link.router-link-active::after {
-      width: 100%;
-    }
+
+  .nav-link.router-link-active::after {
+    width: 100%;
   }
+}

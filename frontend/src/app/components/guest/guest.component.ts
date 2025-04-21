@@ -24,7 +24,7 @@ import { MapComponent } from '../map/map.component';
     AboutComponent,
     GalleryComponent,
     MapComponent,
-    FooterComponent
+    FooterComponent,
   ],
   templateUrl: './guest.component.html',
   styleUrls: ['./guest.component.css']

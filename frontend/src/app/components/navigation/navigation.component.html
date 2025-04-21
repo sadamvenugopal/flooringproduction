@@ -1,26 +1,67 @@
 <nav class="main-nav">
-    <div class="nav-container">
-      <a class="nav-brand" [routerLink]="['/home']" fragment="home">Guest App</a>
-      
-      <button class="nav-toggle" type="button" (click)="isCollapsed = !isCollapsed">
-        <span class="toggle-icon"></span>
-      </button>
-      
-      <div class="nav-menu" [class.show]="!isCollapsed">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home']" fragment="home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/services']" fragment="services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/about']" fragment="about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home']" fragment="footer">Contact</a>
-          </li>
-        </ul>
-      </div>
+  <div class="nav-container">
+    <a class="nav-brand" [routerLink]="['/home']" fragment="home">Guest App</a>
+    
+    <button class="nav-toggle" type="button" (click)="isCollapsed = !isCollapsed" 
+            [class.active]="!isCollapsed">
+      <span class="toggle-icon"></span>
+    </button>
+    
+    <div class="nav-menu" [class.show]="!isCollapsed">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" fragment="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/services']" fragment="services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/about']" fragment="about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" fragment="footer">Contact</a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button" (click)="toggleMockupForm()">Book Appointment</button>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<div class="mockup-overlay" *ngIf="isMockupOpen">
+  <div class="mockup-form">
+    <button class="close-button" (click)="toggleMockupForm()">&times;</button>
+    <h2>Request an Appointment</h2>
+    <form (submit)="submitMockupForm($event)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="mockupData.name" name="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="mockupData.email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" [(ngModel)]="mockupData.phone" name="phone" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Select a Date:</label>
+        <input type="date" id="date" [(ngModel)]="mockupData.date" name="date" [min]="minDate" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="requirements">Requirements:</label>
+        <textarea id="requirements" [(ngModel)]="mockupData.requirements" name="requirements"></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
