@@ -29,6 +29,16 @@ app.use(cors({
 // ✅ Middleware
 app.use(bodyParser.json());
 
+const API_KEY = process.env.API_KEY || "my-secret-api-key"; // fallback if .env missing
+
+app.use((req, res, next) => {
+    const clientApiKey = req.headers['x-api-key'];
+    if (!clientApiKey || clientApiKey !== API_KEY) {
+        return res.status(401).json({ message: "Unauthorized: Invalid API Key" });
+    }
+    next();
+});
+
 // ✅ Routes
 const appointmentRoutes = require("./appointment");
 app.use("/api/appointment", appointmentRoutes);
