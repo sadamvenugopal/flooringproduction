@@ -33,11 +33,18 @@ const API_KEY = process.env.API_KEY || "my-secret-api-key"; // fallback if .env 
 
 app.use((req, res, next) => {
     const clientApiKey = req.headers['x-api-key'];
+
+    if (req.method === 'OPTIONS') {
+        return next(); // ✅ Allow preflight to pass
+    }
+
     if (!clientApiKey || clientApiKey !== API_KEY) {
         return res.status(401).json({ message: "Unauthorized: Invalid API Key" });
     }
+
     next();
 });
+
 
 // ✅ Routes
 const appointmentRoutes = require("./appointment");
