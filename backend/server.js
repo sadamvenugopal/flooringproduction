@@ -8,8 +8,7 @@ const PORT = process.env.PORT || 3003;
 
 // ✅ Allowed Origins
 const allowedOrigins = [
-    'http://flooringproduction', // Internal Docker or local hostname
-    'http://ssscg4kwgckck0cswgkokwcs.82.25.109.195.sslip.io', // Temp domain
+    'http://ess8o0ogo8gkkc0kogockswo.82.25.109.195.sslip.io', // Temp domain
     'https://yourapp.com', // Optional custom domain
     'http://localhost:4200',  // Replace with your frontend URL if different
 
